@@ -1,0 +1,30 @@
+﻿@model List<ArtGallery2.Models.ArtWork>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h1>Art Gallery</h1>
+
+<img src="" />
+@Html.ActionLink("Paintings", "Paintings")
+<img src="" />
+@Html.ActionLink("Sculptures", "Sculptures")
+<img src="" />
+@Html.ActionLink("Photographs", "Photographs")
+<img src="" />
+@Html.ActionLink("Mixed Media", "MixedMedia")
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-3">
+            <h2>@Html.DisplayFor(modelItem => item.Title)</h2>
+            <ul>
+                <li>@Html.DisplayFor(modelItem => item.Medium)</li>
+                <li>@Html.DisplayFor(modelItem => item.YearOriginalCreated)</li>
+                <li><a href="http://go.microsoft.com/fwlink/?LinkId=518007"> Gulp </a>
+            </ul>
+        </div>
+    }
+</div>
+
