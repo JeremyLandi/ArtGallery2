@@ -3,22 +3,45 @@
     ViewBag.Title = "Index";
 }
 
-<h1>Art Gallery</h1>
-
-<img src="" />
-@Html.ActionLink("Paintings", "Paintings")
-<img src="" />
-@Html.ActionLink("Sculptures", "Sculptures")
-<img src="" />
-@Html.ActionLink("Photographs", "Photographs")
-<img src="" />
-@Html.ActionLink("Mixed Media", "MixedMedia")
+<h1 class="text-center">Art Gallery</h1>
+<br/>
+<br/>
+<div class="row">
+    <div class="col-xs-6 col-md-3">
+        <h2 class="text-center">Acrylic</h2>
+        <a href="@Url.Action("Acrylic", "Customer")" class="thumbnail">
+        <img src="http://cdn.dailypainters.com/paintings/blue_moon_wolf__wolf_painting_by_texas_artist_laur_2b90135d1ac192dbeff1aa2d30c0598f.jpg
+                 " alt="acrylic">
+        </a>
+    </div>
+    <div class="col-xs-6 col-md-3">
+        <h2 class="text-center">Photography</h2>
+        <a href="@Url.Action("Photography", "Customer")" class="thumbnail">
+            <img src="http://learn.corel.com/wp-content/uploads/2015/11/iPhone-Photography-Tips_thumb.jpg
+" alt="photography">
+        </a>
+    </div>
+    <div class="col-xs-6 col-md-3">
+        <h2 class="text-center">Mixed Media</h2>
+        <a href="@Url.Action("MixedMedia", "Customer")" class="thumbnail">
+            <img src="http://www.digitalartscalifornia.com/wordpress/wp-content/themes/studiobox/timthumb.php?src=http://www.digitalartscalifornia.com/wordpress/wp-content/uploads/2014/07/wide2.nevado.2.deliberation.jpg&h=400&w=940&q=92&zc=3
+" alt="Mixed Media">
+        </a>
+    </div>
+    <div class="col-xs-6 col-md-3">
+        <h2 class="text-center">Sculptures</h2>
+        <a href="Sculptures" class="thumbnail">
+            <img src="http://images1.novica.net/pictures/10/p179257_2a_400.jpg
+" alt="sculpture">
+        </a>
+    </div>
+</div>
 
 <div class="row">
     @foreach (var item in Model)
     {
         <div class="col-md-3">
-            <h2>@Html.DisplayFor(modelItem => item.Title)</h2>
+            <h2 >@Html.DisplayFor(modelItem => item.Title)</h2>
             <ul>
                 <li>@Html.DisplayFor(modelItem => item.Medium)</li>
                 <li>@Html.DisplayFor(modelItem => item.YearOriginalCreated)</li>
