@@ -11,8 +11,8 @@ namespace ArtGallery2.Models
         public int ArtWorkId { get; set; }
         public string Category { get; set; }
         public string Image { get; set; }
-        public float Cost { get; set; }
-        public float Price { get; set; }
+        public double Cost { get; set; }
+        public double Price { get; set; }
         public bool Sold { get; set; }
         public string Location { get; set; }
         public int EditionNumber { get; set; }
