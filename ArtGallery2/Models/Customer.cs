@@ -8,7 +8,6 @@ namespace ArtGallery2.Models
     public class Customer
     {
         public int CustomerId { get; set; }
-        public int AgentId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Address { get; set; }

@@ -8,8 +8,7 @@ namespace ArtGallery2.Models
     public class ArtShow
     {
         public int ArtShowId { get; set; }
-        public int ArtWorkId { get; set; }
-        public int AgentId { get; set; }
+        public string ShowName { get; set; }
         public string ShowLocation { get; set; }
         public float Overhead { get; set; }
     }
