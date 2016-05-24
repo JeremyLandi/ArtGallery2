@@ -1,0 +1,20 @@
+﻿@model List<ArtGallery2.ViewModel.DigitalPrintViewModel>
+@{
+    ViewBag.Title = "DigitalPrint";
+}
+
+<h2>Art</h2>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-3">
+            <h2>@Html.DisplayFor(modelItem => item.Title)</h2>
+            <ul>
+                <li>@Html.DisplayFor(modelItem => item.Dimensions)</li>
+                <li>@Html.DisplayFor(modelItem => item.Location)</li>
+            </ul>
+        </div>
+    }
+</div>
+
