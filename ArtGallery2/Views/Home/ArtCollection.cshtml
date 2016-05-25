@@ -3,7 +3,7 @@
     ViewBag.Title = "DigitalPrint";
 }
 
-<h2 class="text-center">Art</h2>
+<h2 class="text-center">Digital Print</h2>
 
 <div class="row">
     @foreach (var item in Model)
@@ -11,7 +11,9 @@
         <div class="col-md-3">
             <img src="@Html.DisplayFor(modelItem => item.Image)" alt="image" class="thumbnail"/>
             <h3 class="text-center">@Html.DisplayFor(modelItem => item.Title)</h3>
-            @Html.ActionLink("View Details", "Detail", new { ArtWorkId = item.ArtWorkId})
+            <div class="text-center">
+                @Html.ActionLink("View Details", "Detail", new { ArtWorkId = item.ArtWorkId})
+            </div>
         </div>
     }
 </div>
