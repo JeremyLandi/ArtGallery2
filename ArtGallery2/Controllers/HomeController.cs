@@ -38,7 +38,7 @@ namespace ArtGallery2.Controllers
         public ActionResult ArtCollection(string category)
         {
             var listOfDigitalPrint = (from ip in _context.IndividualPiece
-                                      where ip.Category == category
+                                      where (ip.Category).Replace(" ","") == category.Replace(" ", "")
 
                                       join aw in _context.ArtWork
                                       on ip.ArtWorkId equals aw.ArtWorkId
@@ -80,6 +80,7 @@ namespace ArtGallery2.Controllers
                                   {
                                       ip.Image,
                                       aw.ArtWorkId,
+                                      ip.Category,
                                       ip.Price,
                                       aw.Dimensions,
                                       ip.Location,
@@ -92,6 +93,7 @@ namespace ArtGallery2.Controllers
                                   {
                                       Image = g.Key.Image,
                                       ArtWorkId = g.Key.ArtWorkId,
+                                      Category = g.Key.Category,
                                       Price = g.Key.Price,
                                       Dimensions = g.Key.Dimensions,
                                       Location = g.Key.Location,

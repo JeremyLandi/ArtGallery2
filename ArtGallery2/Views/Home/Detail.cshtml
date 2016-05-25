@@ -15,7 +15,9 @@
 </div>
 <br />
 <div>
-    @Html.ActionLink("Back to Digital Print", "DigitalPrint")
+    <a href="@Url.Action("ArtCollection", "Home")/?category=@Model.Category">
+        Back 
+    </a>
 </div>
 
 
