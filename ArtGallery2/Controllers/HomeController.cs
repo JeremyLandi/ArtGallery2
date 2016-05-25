@@ -15,13 +15,30 @@ namespace ArtGallery2.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            return View();
+            var categories = (from ip in _context.IndividualPiece
+                              select ip.Category).ToList().Distinct();
+
+            List<IndexViewModel> catimages = new List<IndexViewModel>();
+
+            foreach (var item in categories)
+            {
+                IndexViewModel vw = new IndexViewModel
+                {
+                    Image = (from ip in _context.IndividualPiece
+                             where ip.Category == item
+                             select ip.Image).FirstOrDefault(),
+                    Category = item.Replace(" ", "")
+                };
+                catimages.Add(vw);
+            }
+            return View(catimages);
         }
 
-        public ActionResult DigitalPrint()
+
+        public ActionResult ArtCollection(string category)
         {
             var listOfDigitalPrint = (from ip in _context.IndividualPiece
-                                      where ip.Category == "Digital Print"
+                                      where ip.Category == category
 
                                       join aw in _context.ArtWork
                                       on ip.ArtWorkId equals aw.ArtWorkId

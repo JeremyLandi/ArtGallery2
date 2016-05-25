@@ -18,6 +18,7 @@ namespace ArtGallery2.Models
         public DbSet<IndividualPiece> IndividualPiece { get; set; }
         public DbSet<Invoice> Invoice { get; set; }
         public DbSet<LineItem> LineItem { get; set; }
+        public DbSet<Category> Category { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -26,6 +27,10 @@ namespace ArtGallery2.Models
             modelBuilder.Entity<Agent>()
             .ToTable("Agent")
             .HasKey(a => a.AgentId);
+
+            modelBuilder.Entity<Category>()
+            .ToTable("Category")
+            .HasKey(a => a.CategoryId);
 
             modelBuilder.Entity<Artist>()
             .ToTable("Artist")

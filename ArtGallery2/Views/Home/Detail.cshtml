@@ -2,14 +2,20 @@
 @{
     ViewBag.Title = "Detail";
 }
-
-<h2>Detail</h2>
-
+<br />
+<br />
+<img src="@Html.DisplayFor(model => model.Image)" alt="image" class="pull-left" />
 <div class="row">
     <div class="col-md-3">
-        <h2>About @Html.DisplayFor(model => model.Title)</h2>
-    </div>
-   
+        <h2><strong>Title</strong>: @Html.DisplayFor(model => model.Title)</h2>
+        <h4><strong>Price</strong>: @Html.DisplayFor(model => model.Price)</h4>
+        <h4><strong>Current Inventory</strong>: @Html.DisplayFor(model => model.NumberInInventory)</h4>
+        <h4><strong>Location</strong>: @Html.DisplayFor(model => model.Location)</h4>
+    </div> 
+</div>
+<br />
+<div>
+    @Html.ActionLink("Back to Digital Print", "DigitalPrint")
 </div>
 
 

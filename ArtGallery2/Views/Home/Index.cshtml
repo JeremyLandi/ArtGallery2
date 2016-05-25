@@ -1,4 +1,4 @@
-﻿@model List<ArtGallery2.Models.ArtWork>
+﻿@model List<ArtGallery2.ViewModel.IndexViewModel>
 @{
     ViewBag.Title = "Index";
 }
@@ -6,10 +6,23 @@
 <h1 class="text-center">Art Gallery</h1>
 <br/>
 <div class="row">
-    <div class="col-xs-6 col-md-3">
+
+
+
+    @foreach(var item in Model) 
+    {
+      <div class="col-xs-6 col-md-3">
+        <h2 class="text-center">@Html.DisplayFor(modelItem => item.Category)</h2>
+        <a href="@Url.Action("ArtCollection", "Home")/?category=@item.Category" class="thumbnail">
+            <img src="@Html.DisplayFor(modelItem => item.Image)" alt="acrylic">
+        </a>
+    </div>
+    }
+
+    @*<div class="col-xs-6 col-md-3">
         <h2 class="text-center">Digital Print</h2>
         <a href="@Url.Action("DigitalPrint", "Home")" class="thumbnail">
-        <img src="http://cdn.dailypainters.com/paintings/blue_moon_wolf__wolf_painting_by_texas_artist_laur_2b90135d1ac192dbeff1aa2d30c0598f.jpg" alt="acrylic">
+            <img src="http://cdn.dailypainters.com/paintings/blue_moon_wolf__wolf_painting_by_texas_artist_laur_2b90135d1ac192dbeff1aa2d30c0598f.jpg" alt="acrylic">
         </a>
     </div>
     <div class="col-xs-6 col-md-3">
@@ -29,6 +42,6 @@
         <a href="@Url.Action("Sculpture", "Home")" class="thumbnail">
             <img src="http://images1.novica.net/pictures/10/p179257_2a_400.jpg" alt="sculpture">
         </a>
-    </div>
+    </div>*@
 </div>
 
