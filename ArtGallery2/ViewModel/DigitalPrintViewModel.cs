@@ -9,6 +9,7 @@ namespace ArtGallery2.ViewModel
     {
         public string Image { get; set; }
         public double Price { get; set; }
+        public string Category { get; set; }
         public string Dimensions { get; set; }
         public string Location { get; set; }
         public int NumberInInventory { get; set; }
