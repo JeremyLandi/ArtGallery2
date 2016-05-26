@@ -114,6 +114,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CreateNewArtViewModelsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OwnerController.cs" />
     <Compile Include="Global.asax.cs">
@@ -131,6 +132,7 @@
     <Compile Include="Models\Invoice.cs" />
     <Compile Include="Models\LineItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\CreateNewArtViewModel.cs" />
     <Compile Include="ViewModel\DigitalPrintViewModel.cs" />
     <Compile Include="ViewModel\IndexViewModel.cs" />
   </ItemGroup>
@@ -147,6 +149,11 @@
     <Content Include="Views\Home\ArtCollection.cshtml" />
     <Content Include="Views\Home\Detail.cshtml" />
     <Content Include="Views\Home\View.cshtml" />
+    <Content Include="Views\CreateNewArtViewModels\Create.cshtml" />
+    <Content Include="Views\CreateNewArtViewModels\Delete.cshtml" />
+    <Content Include="Views\CreateNewArtViewModels\Details.cshtml" />
+    <Content Include="Views\CreateNewArtViewModels\Edit.cshtml" />
+    <Content Include="Views\CreateNewArtViewModels\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
