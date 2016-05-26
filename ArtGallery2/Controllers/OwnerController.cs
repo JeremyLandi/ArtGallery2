@@ -18,7 +18,7 @@ namespace ArtGallery2.Controllers
         // GET: CreateNewArtViewModels
         public ActionResult Index()
         {
-            return View(db.CreateNewArtViewModels.ToList());
+            return View();
         }
 
         // GET: CreateNewArtViewModels/Details/5
@@ -28,7 +28,7 @@ namespace ArtGallery2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CreateNewArtViewModel createNewArtViewModel = db.CreateNewArtViewModels.Find(id);
+            CreateNewArtistViewModel createNewArtViewModel = db.CreateNewArtViewModels.Find(id);
             if (createNewArtViewModel == null)
             {
                 return HttpNotFound();
@@ -36,8 +36,9 @@ namespace ArtGallery2.Controllers
             return View(createNewArtViewModel);
         }
 
-        // GET: CreateNewArtViewModels/Create
-        public ActionResult Create()
+        // GET: Owner/CreateArtist
+        [HttpGet]
+        public ActionResult CreateArtist()
         {
             return View();
         }
@@ -47,16 +48,86 @@ namespace ArtGallery2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PrimaryTrackingkey,Name,BirthYear,DeathYear,Title,YearOriginalCreated,Medium,Dimensions,NumberMade,NumberInInventory,NumberSold,Category,Image,Cost,Price,Sold,Location,EditionNumber")] CreateNewArtViewModel createNewArtViewModel)
+        public ActionResult CreateArtist([Bind(Include = "Name,BirthYear,DeathYear")] Artist createArtist)
         {
             if (ModelState.IsValid)
             {
-                db.CreateNewArtViewModels.Add(createNewArtViewModel);
+                db.Artist.Add(createArtist);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(createNewArtViewModel);
+            return View(createArtist);
+        }
+
+        // GET: Owner/CreateArtWork
+        [HttpGet]
+        public ActionResult CreateArtWork()
+        {
+
+            //var ArtistList = new List<string>();
+            //ArtistList.AddRange(ArtistQry.Distinct());
+            //ViewData["ArtistName"] = new SelectList(ArtistList);
+
+            //var ArtistQry = (from a in db.Artist
+            //                 orderby a.Name
+            //                 select a).ToList();
+
+            IEnumerable<SelectListItem> selectList =
+                from a in db.Artist
+                select new SelectListItem
+                {
+                    Text = a.Name,
+                    Value = a.ArtistId.ToString()
+                };
+
+
+
+            ArtistDropDownViewModel artistList = new ArtistDropDownViewModel()
+            {
+                ArtistList = selectList
+            };
+            return View(artistList);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateArtWork(ArtistDropDownViewModel createArtWork)
+        {
+            if (ModelState.IsValid)
+            {
+                var artwork = new ArtWork
+                {
+                    ArtistId = createArtWork.SelectedArtistId,
+                    Title = createArtWork.Title,
+                    YearOriginalCreated = createArtWork.YearOriginalCreated
+                };
+                db.ArtWork.Add(artwork);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(createArtWork);
+        }
+
+        // GET: Owner/CreateIndividualPiece
+        [HttpGet]
+        public ActionResult CreateIndividualPiece()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateIndividualPiece([Bind(Include = "Title,YearOriginalCreated")] IndividualPiece createIndividualPiece)
+        {
+            if (ModelState.IsValid)
+            {
+                db.IndividualPiece.Add(createIndividualPiece);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View(createIndividualPiece);
         }
 
         // GET: CreateNewArtViewModels/Edit/5
@@ -66,7 +137,7 @@ namespace ArtGallery2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CreateNewArtViewModel createNewArtViewModel = db.CreateNewArtViewModels.Find(id);
+            CreateNewArtistViewModel createNewArtViewModel = db.CreateNewArtViewModels.Find(id);
             if (createNewArtViewModel == null)
             {
                 return HttpNotFound();
@@ -79,7 +150,7 @@ namespace ArtGallery2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PrimaryTrackingkey,Name,BirthYear,DeathYear,Title,YearOriginalCreated,Medium,Dimensions,NumberMade,NumberInInventory,NumberSold,Category,Image,Cost,Price,Sold,Location,EditionNumber")] CreateNewArtViewModel createNewArtViewModel)
+        public ActionResult Edit([Bind(Include = "PrimaryTrackingkey,Name,BirthYear,DeathYear,Title,YearOriginalCreated,Medium,Dimensions,NumberMade,NumberInInventory,NumberSold,Category,Image,Cost,Price,Sold,Location,EditionNumber")] CreateNewArtistViewModel createNewArtViewModel)
         {
             if (ModelState.IsValid)
             {
@@ -91,13 +162,14 @@ namespace ArtGallery2.Controllers
         }
 
         // GET: CreateNewArtViewModels/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult DeleteArtist(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CreateNewArtViewModel createNewArtViewModel = db.CreateNewArtViewModels.Find(id);
+
+            CreateNewArtistViewModel createNewArtViewModel = db.CreateNewArtViewModels.Find(id);
             if (createNewArtViewModel == null)
             {
                 return HttpNotFound();
@@ -110,7 +182,7 @@ namespace ArtGallery2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            CreateNewArtViewModel createNewArtViewModel = db.CreateNewArtViewModels.Find(id);
+            CreateNewArtistViewModel createNewArtViewModel = db.CreateNewArtViewModels.Find(id);
             db.CreateNewArtViewModels.Remove(createNewArtViewModel);
             db.SaveChanges();
             return RedirectToAction("Index");

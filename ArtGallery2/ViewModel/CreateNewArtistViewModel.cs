@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ArtGallery2.ViewModel
 {
-    public class CreateNewArtViewModel
+    public class CreateNewArtistViewModel
     {
         [Key]
         public int PrimaryTrackingkey { get; set; }
@@ -32,7 +32,5 @@ namespace ArtGallery2.ViewModel
         public bool Sold { get; set; }
         public string Location { get; set; }
         public int EditionNumber { get; set; }
-
-
     }
 }
