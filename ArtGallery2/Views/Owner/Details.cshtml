@@ -1,0 +1,154 @@
+﻿@model ArtGallery2.ViewModel.CreateNewArtViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CreateNewArtViewModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BirthYear)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BirthYear)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeathYear)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeathYear)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.YearOriginalCreated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.YearOriginalCreated)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Medium)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Medium)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dimensions)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dimensions)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumberMade)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumberMade)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumberInInventory)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumberInInventory)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumberSold)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumberSold)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Category)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Category)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Image)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Image)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cost)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sold)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sold)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Location)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Location)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EditionNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EditionNumber)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PrimaryTrackingkey }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
