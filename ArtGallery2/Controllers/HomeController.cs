@@ -18,7 +18,7 @@ namespace ArtGallery2.Controllers
             var categories = (from ip in _context.IndividualPiece
                               select ip.Category).ToList().Distinct();
 
-            List<IndexViewModel> catimages = new List<IndexViewModel>();
+            List<IndexViewModel> catigoryImages = new List<IndexViewModel>();
 
             foreach (var item in categories)
             {
@@ -29,27 +29,31 @@ namespace ArtGallery2.Controllers
                              select ip.Image).FirstOrDefault(),
                     Category = item.Replace(" ", "")
                 };
-                catimages.Add(vw);
+                catigoryImages.Add(vw);
             }
-            return View(catimages);
+            return View(catigoryImages);
         }
 
 
         public ActionResult ArtCollection(string category)
         {
+            var ArtWorkSold = (from ip in _context.IndividualPiece
+                               join aw in _context.ArtWork
+                               on ip.ArtWorkId equals aw.ArtWorkId
+                               select ip.ArtWorkId).Count();
+
             var listOfDigitalPrint = (from ip in _context.IndividualPiece
                                       where (ip.Category).Replace(" ","") == category.Replace(" ", "")
-
                                       join aw in _context.ArtWork
                                       on ip.ArtWorkId equals aw.ArtWorkId
                                       group ip by new
                                       {
                                           ip.Image,
-                                          aw.ArtWorkId,
+                                          ip.ArtWorkId,
                                           ip.Price,
-                                          aw.Dimensions,
+                                          ip.Dimensions,
+                                          //aw.NumberInInventory,
                                           ip.Location,
-                                          aw.NumberInInventory,
                                           aw.Title
                                       }
                                       into g  
@@ -61,7 +65,7 @@ namespace ArtGallery2.Controllers
                                  Price = g.Key.Price,
                                  Dimensions = g.Key.Dimensions,
                                  Location = g.Key.Location,
-                                 NumberInInventory = g.Key.NumberInInventory,
+                                 //NumberInInventory = g.Key.NumberInInventory,
                                  Title = g.Key.Title
 
                              }).ToList();
@@ -82,9 +86,9 @@ namespace ArtGallery2.Controllers
                                       aw.ArtWorkId,
                                       ip.Category,
                                       ip.Price,
-                                      aw.Dimensions,
+                                      ip.Dimensions,
                                       ip.Location,
-                                      aw.NumberInInventory,
+                                      //aw.NumberInInventory,
                                       aw.Title
                                   }
                                       into g
@@ -97,7 +101,7 @@ namespace ArtGallery2.Controllers
                                       Price = g.Key.Price,
                                       Dimensions = g.Key.Dimensions,
                                       Location = g.Key.Location,
-                                      NumberInInventory = g.Key.NumberInInventory,
+                                      //NumberInInventory = g.Key.NumberInInventory,
                                       Title = g.Key.Title
 
                                   }).FirstOrDefault();
