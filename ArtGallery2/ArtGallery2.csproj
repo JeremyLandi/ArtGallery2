@@ -114,9 +114,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\CreateNewArtViewModelsController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OwnerController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -149,11 +148,11 @@
     <Content Include="Views\Home\ArtCollection.cshtml" />
     <Content Include="Views\Home\Detail.cshtml" />
     <Content Include="Views\Home\View.cshtml" />
-    <Content Include="Views\CreateNewArtViewModels\Create.cshtml" />
-    <Content Include="Views\CreateNewArtViewModels\Delete.cshtml" />
-    <Content Include="Views\CreateNewArtViewModels\Details.cshtml" />
-    <Content Include="Views\CreateNewArtViewModels\Edit.cshtml" />
-    <Content Include="Views\CreateNewArtViewModels\Index.cshtml" />
+    <Content Include="Views\Owner\Create.cshtml" />
+    <Content Include="Views\Owner\Delete.cshtml" />
+    <Content Include="Views\Owner\Details.cshtml" />
+    <Content Include="Views\Owner\Edit.cshtml" />
+    <Content Include="Views\Owner\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -163,7 +162,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Owner\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
