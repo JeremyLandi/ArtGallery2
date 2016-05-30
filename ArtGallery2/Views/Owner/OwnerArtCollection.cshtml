@@ -1,4 +1,4 @@
-﻿@model List<ArtGallery2.Models.IndividualPiece>
+﻿@model List<ArtGallery2.ViewModel.ArtViewModel >
 @{
     ViewBag.Title = "ArtWork";
 }
@@ -16,38 +16,46 @@
         }
     </div>*@
 
-    <h4>DigitalPrintViewModel</h4>
-    <hr />
-    @foreach (var item in Model)
-    {
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(modelItem => item.Image)
-            </dt>
-            <dd>
-                @Html.DisplayFor(modelItem => item.Image)
-            </dd>
-            @*<dt>
-                @Html.DisplayNameFor(modelItem => item.Title)
-            </dt>
-            <dd>
+<h4>Art Work Available</h4>
+<hr />
+@foreach (var item in Model)
+{
+    <div class="row">
+        <a href="@Url.Action("SoldWork", "Owner", new { Location = item.Location})" class="thumbnail">
+            View Sold Pieces
+        </a>
+        <div class="col-md-2">
+            @Html.DisplayNameFor(modelItem => item.Image)
+        </div>
+        <div class="col-md-2">
+            @Html.DisplayNameFor(modelItem => item.Title)
+        </div>
+        <div class="col-md-2">
+            @Html.DisplayNameFor(modelItem => item.Price)
+        </div>
+        <div class="col-md-2">
+            @Html.DisplayNameFor(modelItem => item.Cost)
+        </div>
+        <div class="col-md-2">
+            @Html.DisplayNameFor(modelItem => item.Edition)
+        </div>
+    </div>
+
+    <div class="row">
+           <div class="col-md-2">
+                <img src="@Html.DisplayFor(modelItem => item.Image)" alt="Alternate Text" class="thumbnail" />
+            </div>
+            <div class="col-md-2">
                 @Html.DisplayFor(modelItem => item.Title)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.Price)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Price)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.Cost)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Cost)
-            </dd>*@
-        </dl>
-        <p>
-            @Html.ActionLink("View Details", "Detail", new { ArtWorkId = item.ArtWorkId })
-            @Html.ActionLink("Back to List", "Index")
-        </p>
-    }
+            </div>
+            <div class="col-md-2">
+                @Html.DisplayFor(modelItem => item.Price)
+            </div>
+            <div class="col-md-2">
+                @Html.DisplayFor(modelItem => item.Cost)
+            </div>
+            <div class="col-md-2">
+                @Html.DisplayFor(modelItem => item.Edition)
+            </div>
+        </div>
+}

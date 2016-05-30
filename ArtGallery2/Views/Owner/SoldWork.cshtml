@@ -1,0 +1,45 @@
+﻿@model List<ArtGallery2.ViewModel.ArtViewModel>
+@{
+    ViewBag.Title = "ArtWork";
+}
+
+<h4>Art Work Sold</h4>
+<hr />
+@foreach (var item in Model)
+{
+    <div class="row">
+        <div class="col-md-2">
+            @Html.DisplayNameFor(modelItem => item.Image)
+        </div>
+        <div class="col-md-2">
+            @Html.DisplayNameFor(modelItem => item.Title)
+        </div>
+        <div class="col-md-2">
+            @Html.DisplayNameFor(modelItem => item.Price)
+        </div>
+        <div class="col-md-2">
+            @Html.DisplayNameFor(modelItem => item.Profit)
+        </div>
+        <div class="col-md-2">
+            @Html.DisplayNameFor(modelItem => item.Edition)
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2">
+            <img src="@Html.DisplayFor(modelItem => item.Image)" alt="Alternate Text" class="thumbnail" />
+        </div>
+        <div class="col-md-2">
+            @Html.DisplayFor(modelItem => item.Title)
+        </div>
+        <div class="col-md-2">
+            @Html.DisplayFor(modelItem => item.Price)
+        </div>
+        <div class="col-md-2">
+            @Html.DisplayFor(modelItem => item.Profit)
+        </div>
+        <div class="col-md-2">
+            @Html.DisplayFor(modelItem => item.Edition)
+        </div>
+    </div>
+}

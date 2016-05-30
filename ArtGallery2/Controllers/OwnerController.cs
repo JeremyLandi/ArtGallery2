@@ -37,13 +37,59 @@ namespace ArtGallery2.Controllers
             return View(LocationImages);
         }
 
-        public ActionResult ArtCollection(string location)
+        [HttpGet]
+        public ActionResult OwnerArtCollection(OwnerIndexViewModel ownerIndexViewModel)
         {
-            var listOfIndividualPieces = (from ip in db.IndividualPiece
-                                      where (ip.Location).Replace(" ", "") == location.Replace(" ", "")
-                                      select ip).ToList();
+            var artWork = (from ip in db.IndividualPiece
+                           join aw in db.ArtWork
+                           on ip.ArtWorkId equals aw.ArtWorkId
+                           join ar in db.Artist
+                           on aw.ArtistId equals ar.ArtistId
+                           where ip.Sold == false
+                           where ip.Location.Replace(" ", "") == ownerIndexViewModel.Location.Replace(" ", "")
 
-            return View(listOfIndividualPieces);
+                           select new ArtViewModel
+                           {
+                               ArtWorkId = ip.ArtWorkId,
+                               Title = aw.Title,
+                               Category = ip.Category,
+                               Name = ar.Name,
+                               Image = ip.Image,
+                               Medium = ip.Medium,
+                               Price = ip.Price,
+                               Cost = ip.Cost,
+                               Edition = ip.EditionNumber,
+                               Location = ownerIndexViewModel.Location
+                           });
+
+            return View(artWork.ToList());
+        }
+
+        [HttpGet]
+        public ActionResult SoldWork(ArtViewModel artViewModel)
+        {
+            var artWork = (from ip in db.IndividualPiece
+                           join aw in db.ArtWork
+                           on ip.ArtWorkId equals aw.ArtWorkId
+                           join ar in db.Artist
+                           on aw.ArtistId equals ar.ArtistId
+                           where ip.Sold == true
+                           where ip.Location.Replace(" ", "") == artViewModel.Location.Replace(" ", "")
+
+                           select new ArtViewModel
+                           {
+                               ArtWorkId = ip.ArtWorkId,
+                               Title = aw.Title,
+                               Category = ip.Category,
+                               Name = ar.Name,
+                               Image = ip.Image,
+                               Medium = ip.Medium,
+                               Price = ip.Price,
+                               Profit = (ip.Price - ip.Cost),
+                               Edition = ip.EditionNumber
+                           });
+
+            return View(artWork.ToList());
         }
 
         // GET: CreateNewArtViewModels/Details/5

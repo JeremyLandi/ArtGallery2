@@ -149,13 +149,13 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Home\ArtCollection.cshtml" />
     <Content Include="Views\Home\Detail.cshtml" />
-    <Content Include="Views\Home\View.cshtml" />
     <Content Include="Views\Owner\Create.cshtml" />
     <Content Include="Views\Owner\Delete.cshtml" />
     <Content Include="Views\Owner\Details.cshtml" />
     <Content Include="Views\Owner\Edit.cshtml" />
     <Content Include="Views\Owner\Index.cshtml" />
     <Content Include="Views\Owner\OwnerArtCollection.cshtml" />
+    <Content Include="Views\Owner\SoldWork.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -11,7 +11,7 @@
     {
         <div class="col-xs-6 col-md-3">
             <h2 class="text-center">@Html.DisplayFor(modelItem => item.Location)</h2>
-            <a href="@Url.Action("ArtCollection", "Owner", new { Location = item.Location })" class="thumbnail">
+            <a href="@Url.Action("OwnerArtCollection", "Owner", new { Location = item.Location })" class="thumbnail">
                 <img src="@Html.DisplayFor(modelItem => item.Image)" alt="acrylic">
             </a>
         </div>
