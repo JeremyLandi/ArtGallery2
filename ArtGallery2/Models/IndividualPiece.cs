@@ -16,5 +16,7 @@ namespace ArtGallery2.Models
         public bool Sold { get; set; }
         public string Location { get; set; }
         public int EditionNumber { get; set; }
+        public string Medium { get; set; }
+        public string Dimensions { get; set; }
     }
 }

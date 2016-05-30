@@ -18,7 +18,32 @@ namespace ArtGallery2.Controllers
         // GET: CreateNewArtViewModels
         public ActionResult Index()
         {
-            return View(db.CreateNewArtViewModels.ToList());
+            var locations = (from ip in db.IndividualPiece
+                              select ip.Location).ToList().Distinct();
+
+            List<OwnerIndexViewModel> LocationImages = new List<OwnerIndexViewModel>();
+
+            foreach (var item in locations)
+            {
+                OwnerIndexViewModel vw = new OwnerIndexViewModel
+                {
+                    Image = (from ip in db.IndividualPiece
+                             where ip.Location == item
+                             select ip.Image).FirstOrDefault(),
+                    Location = item.Replace(" ", "")
+                };
+                LocationImages.Add(vw);
+            }
+            return View(LocationImages);
+        }
+
+        public ActionResult ArtCollection(string location)
+        {
+            var listOfIndividualPieces = (from ip in db.IndividualPiece
+                                      where (ip.Location).Replace(" ", "") == location.Replace(" ", "")
+                                      select ip).ToList();
+
+            return View(listOfIndividualPieces);
         }
 
         // GET: CreateNewArtViewModels/Details/5
