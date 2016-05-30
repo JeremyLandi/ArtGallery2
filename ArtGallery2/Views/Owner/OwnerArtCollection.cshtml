@@ -1,0 +1,61 @@
+﻿@model List<ArtGallery2.ViewModel.ArtViewModel >
+@{
+    ViewBag.Title = "ArtWork";
+}
+@*<h2 class="text-center">Art Piece</h2>
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-3">
+                <img src="@Html.DisplayFor(modelItem => item.Image)" alt="image" class="thumbnail" />
+                <h3 class="text-center">@Html.DisplayFor(modelItem => item.Title)</h3>
+                <div class="text-center">
+                    @Html.ActionLink("View Details", "Detail", new { ArtWorkId = item.ArtWorkId })
+                </div>
+            </div>
+        }
+    </div>*@
+
+<h4>Art Work Available</h4>
+<hr />
+@foreach (var item in Model)
+{
+    <div class="row">
+        <a href="@Url.Action("SoldWork", "Owner", new { Location = item.Location})" class="thumbnail">
+            View Sold Pieces
+        </a>
+        <div class="col-md-2">
+            @Html.DisplayNameFor(modelItem => item.Image)
+        </div>
+        <div class="col-md-2">
+            @Html.DisplayNameFor(modelItem => item.Title)
+        </div>
+        <div class="col-md-2">
+            @Html.DisplayNameFor(modelItem => item.Price)
+        </div>
+        <div class="col-md-2">
+            @Html.DisplayNameFor(modelItem => item.Cost)
+        </div>
+        <div class="col-md-2">
+            @Html.DisplayNameFor(modelItem => item.Edition)
+        </div>
+    </div>
+
+    <div class="row">
+           <div class="col-md-2">
+                <img src="@Html.DisplayFor(modelItem => item.Image)" alt="Alternate Text" class="thumbnail" />
+            </div>
+            <div class="col-md-2">
+                @Html.DisplayFor(modelItem => item.Title)
+            </div>
+            <div class="col-md-2">
+                @Html.DisplayFor(modelItem => item.Price)
+            </div>
+            <div class="col-md-2">
+                @Html.DisplayFor(modelItem => item.Cost)
+            </div>
+            <div class="col-md-2">
+                @Html.DisplayFor(modelItem => item.Edition)
+            </div>
+        </div>
+}
