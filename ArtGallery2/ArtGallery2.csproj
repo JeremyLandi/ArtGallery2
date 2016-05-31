@@ -135,6 +135,7 @@
     <Compile Include="ViewModel\ArtWorkDropDownViewModel.cs" />
     <Compile Include="ViewModel\CreateNewArtistViewModel.cs" />
     <Compile Include="ViewModel\ArtViewModel.cs" />
+    <Compile Include="ViewModel\CreateNewArtViewModel.cs" />
     <Compile Include="ViewModel\IndexViewModel.cs" />
     <Compile Include="ViewModel\OwnerArtWorkViewModel.cs" />
     <Compile Include="ViewModel\OwnerIndexViewModel.cs" />
@@ -159,9 +160,9 @@
     <Content Include="Views\Owner\OwnerArtCollection.cshtml" />
     <Content Include="Views\Owner\SoldWork.cshtml" />
     <Content Include="Views\Owner\CreateArtWork.cshtml" />
-    <Content Include="Views\Owner\CreateIndividualPiece.cshtml" />
     <Content Include="Views\Owner\EditIp.cshtml" />
     <Content Include="Views\Owner\DeleteIp.cshtml" />
+    <Content Include="Views\Owner\CreateIndividualPiece.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

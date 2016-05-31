@@ -245,11 +245,21 @@ namespace ArtGallery2.Controllers
                 Value = a.ArtWorkId.ToString()
             };
 
-            ArtistDropDownViewModel artistList = new ArtistDropDownViewModel()
+            IEnumerable<SelectListItem> locactionSelectList =
+             from a in db.IndividualPiece
+             select new SelectListItem
+             {
+                 Text = a.Location,
+                 Value = a.Location.ToString()
+             };
+
+            ArtWorkDropDownViewModel artWorkList = new ArtWorkDropDownViewModel()
             {
-                ArtistList = selectList
+                LocationList = locactionSelectList.Distinct(),
+                ArtWorkList = selectList
             };
-            return View(artistList);
+            return View(artWorkList);
+   
         }
 
         [HttpPost]
@@ -266,7 +276,7 @@ namespace ArtGallery2.Controllers
                     Cost = createIndividualPiece.Cost,
                     Price = createIndividualPiece.Price,
                     Sold = createIndividualPiece.Sold,
-                    Location = createIndividualPiece.Location,
+                    Location = createIndividualPiece.SelectedLocation.ToString(),
                     EditionNumber = createIndividualPiece.EditionNumber,
                     Medium = createIndividualPiece.Medium,
                     Dimensions = createIndividualPiece.Dimensions
