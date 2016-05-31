@@ -2,28 +2,21 @@
 @{
     ViewBag.Title = "ArtWork";
 }
-@*<h2 class="text-center">Art Piece</h2>
-    <div class="row">
-        @foreach (var item in Model)
-        {
-            <div class="col-md-3">
-                <img src="@Html.DisplayFor(modelItem => item.Image)" alt="image" class="thumbnail" />
-                <h3 class="text-center">@Html.DisplayFor(modelItem => item.Title)</h3>
-                <div class="text-center">
-                    @Html.ActionLink("View Details", "Detail", new { ArtWorkId = item.ArtWorkId })
-                </div>
-            </div>
-        }
-    </div>*@
+
+@*@Html.ActionLink("Add Artist", "CreateArtist")
+@Html.ActionLink("Add ArtWork", "CreateArtWork")
+@Html.ActionLink("Add Art Piece", "CreateIndividualPiece")*@
+
 
 <h4>Art Work Available</h4>
+@Html.ActionLink("View Sold Pieces", "SoldWork", new { Location = "South" })
 <hr />
 @foreach (var item in Model)
 {
     <div class="row">
-        <a href="@Url.Action("SoldWork", "Owner", new { Location = item.Location})" class="thumbnail">
+        @*<a href="@Url.Action("SoldWork", "Owner", new { Location = item.Location})">
             View Sold Pieces
-        </a>
+        </a>*@
         <div class="col-md-2">
             @Html.DisplayNameFor(modelItem => item.Image)
         </div>
@@ -57,5 +50,11 @@
             <div class="col-md-2">
                 @Html.DisplayFor(modelItem => item.Edition)
             </div>
+        <div>
+            @Html.ActionLink("Edit", "EditIp", new { id = item.IndividualPieceId })    
+            @Html.ActionLink("Delete", "DeleteIp", new { id = item.IndividualPieceId })
         </div>
+        </div>
+
+        <hr />
 }

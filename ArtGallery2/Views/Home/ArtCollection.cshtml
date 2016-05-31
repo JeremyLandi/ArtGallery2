@@ -3,27 +3,31 @@
     ViewBag.Title = "Art Work";
 }
 
-<h2>Customer</h2>
-
-@using (Html.BeginForm())
-{
-    <p>
-        Artist: @Html.TextBox("searchString")
-        @Html.Hidden("searchId", 1)
-        <input type="submit" value="Search" />
-    </p>
-}
-
-@using (Html.BeginForm())
-{
-    <p>
-        Min Price: @Html.TextBox("minPrice")
-        Max Price: @Html.TextBox("maxPrice")
-        @Html.Hidden("searchId", 2)
-        <input type="submit" value="Search" />
-    </p>
-}
-
+<br />
+<div class="row col-md-12">
+    <div class="col-md-4">
+        @using (Html.BeginForm())
+        {
+            <p>
+                Artist: @Html.TextBox("searchString")
+                @Html.Hidden("searchId", 1)
+                <input type="submit" value="Search" />
+            </p>
+        }
+    </div>
+    <div class="">
+        @using (Html.BeginForm())
+        {
+            <p>
+                Min Price: @Html.TextBox("minPrice")
+                Max Price: @Html.TextBox("maxPrice")
+                @Html.Hidden("searchId", 2)
+                <input type="submit" value="Search" />
+            </p>
+        }
+    </div>
+</div>
+<hr />
 <div class="row">
     @foreach (var item in Model)
     {
