@@ -136,11 +136,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\ArtistDropDownViewModel.cs" />
     <Compile Include="ViewModel\ArtListViewModel.cs" />
-    <Compile Include="ViewModel\ArtWorkDropDownViewModel.cs" />
+    <Compile Include="ViewModel\ArtWorkDropViewModel.cs" />
     <Compile Include="ViewModel\CreateNewArtistViewModel.cs" />
     <Compile Include="ViewModel\ArtViewModel.cs" />
-    <Compile Include="ViewModel\CreateNewArtViewModel.cs" />
+    <Compile Include="ViewModel\CreateNewArtViewModels.cs" />
     <Compile Include="ViewModel\EditIpViewModel.cs" />
+    <Compile Include="ViewModel\CreateArtistViewModel.cs" />
     <Compile Include="ViewModel\IndexViewModel.cs" />
     <Compile Include="ViewModel\OwnerArtWorkViewModel.cs" />
     <Compile Include="ViewModel\OwnerIndexViewModel.cs" />
@@ -168,6 +169,12 @@
     <Content Include="Views\Owner\EditIp.cshtml" />
     <Content Include="Views\Owner\DeleteIp.cshtml" />
     <Content Include="Views\Owner\CreateIndividualPiece.cshtml" />
+    <Content Include="Views\Home\View.cshtml" />
+    <Content Include="Views\Owner\CreateArtist.cshtml" />
+    <Content Include="Views\Owner\DeleteArtist.cshtml" />
+    <Content Include="Views\Owner\Details.cshtml" />
+    <Content Include="Views\Owner\Edit.cshtml" />
+    <Content Include="Views\Owner\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

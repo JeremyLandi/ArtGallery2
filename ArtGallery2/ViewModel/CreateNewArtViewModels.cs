@@ -7,8 +7,8 @@ using System.Web.Mvc;
 
 namespace ArtGallery2.ViewModel
 {
-    public class CreateNewArtViewModel
-    {
+	public class CreateNewArtViewModels
+	{
         [Key]
         public int PrimaryTrackingkey { get; set; }
         //Artist

@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace ArtGallery2.ViewModel
 {
-    public class ArtWorkDropDownViewModel
+    public class ArtWorkDropViewModel
     {
         [Key]
         public int PrimaryTrackingkey { get; set; }

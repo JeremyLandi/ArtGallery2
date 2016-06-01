@@ -65,9 +65,10 @@ namespace ArtGallery2.Models
             .ToTable("LineItem")
             .HasKey(l => l.LineItemId);
         }
-
         public System.Data.Entity.DbSet<ArtGallery2.ViewModel.CreateNewArtistViewModel> CreateNewArtViewModels { get; set; }
 
-        public System.Data.Entity.DbSet<ArtGallery2.ViewModel.CreateNewArtViewModel> CreateNewArtViewModels1 { get; set; }
+        public System.Data.Entity.DbSet<ArtGallery2.ViewModel.CreateNewArtViewModels> CreateNewArtViewModels1 { get; set; }
+
+
     }
 }

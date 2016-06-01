@@ -38,6 +38,7 @@ namespace ArtGallery2.Controllers
         [HttpGet]
         public ActionResult ArtCollection(IndexViewModel indexViewModel)
         {
+
             var artWork = (from aw in _context.ArtWork
                            join ar in _context.Artist
                            on aw.ArtistId equals ar.ArtistId
