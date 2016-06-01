@@ -15,6 +15,8 @@ namespace ArtGallery2.Controllers
     {
         private ArtGalleryDbContext db = new ArtGalleryDbContext();
 
+        #region Index
+
         // GET: Owner View
         public ActionResult Index()
         {
@@ -36,6 +38,8 @@ namespace ArtGallery2.Controllers
             }
             return View(LocationImages);
         }
+
+        #endregion Index
 
         #region Owner View
 
@@ -63,9 +67,15 @@ namespace ArtGallery2.Controllers
                                Edition = ip.EditionNumber,
                                IndividualPieceId = ip.IndividualPieceId,
                                Location = ownerIndexViewModel.Location
-                           });
+                           }).ToList();
 
-            return View(artWork.ToList());
+            ArtListViewModel artListViewModel = new ArtListViewModel
+            {
+                artViewModel = artWork,
+                Location = ownerIndexViewModel.Location
+            };
+
+            return View(artListViewModel);
         }
 
         #endregion
@@ -94,9 +104,15 @@ namespace ArtGallery2.Controllers
                                Price = ip.Price,
                                Profit = (ip.Price - ip.Cost),
                                Edition = ip.EditionNumber
-                           });
+                           }).ToList();
 
-            return View(artWork.ToList());
+            ArtListViewModel artListViewModel = new ArtListViewModel
+            {
+                artViewModel = artWork,
+                Location = location
+            };
+
+            return View(artListViewModel);
         }
 
         #endregion
@@ -245,17 +261,8 @@ namespace ArtGallery2.Controllers
                 Value = a.ArtWorkId.ToString()
             };
 
-            IEnumerable<SelectListItem> locactionSelectList =
-             from a in db.IndividualPiece
-             select new SelectListItem
-             {
-                 Text = a.Location,
-                 Value = a.Location.ToString()
-             };
-
             ArtWorkDropDownViewModel artWorkList = new ArtWorkDropDownViewModel()
             {
-                LocationList = locactionSelectList.Distinct(),
                 ArtWorkList = selectList
             };
             return View(artWorkList);
@@ -276,7 +283,7 @@ namespace ArtGallery2.Controllers
                     Cost = createIndividualPiece.Cost,
                     Price = createIndividualPiece.Price,
                     Sold = createIndividualPiece.Sold,
-                    Location = createIndividualPiece.SelectedLocation.ToString(),
+                    Location = createIndividualPiece.Location,
                     EditionNumber = createIndividualPiece.EditionNumber,
                     Medium = createIndividualPiece.Medium,
                     Dimensions = createIndividualPiece.Dimensions
@@ -298,25 +305,70 @@ namespace ArtGallery2.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             IndividualPiece individualPiece = db.IndividualPiece.Find(id);
-            if (individualPiece == null)
+
+            IEnumerable<SelectListItem> selectList =
+             from a in db.ArtWork
+             select new SelectListItem
+             {
+                 Text = a.Title,
+                 Value = a.ArtWorkId.ToString(),
+                 Selected = a.ArtWorkId.ToString() == id.ToString()
+             };
+
+            EditIpViewModel ip = new EditIpViewModel()
+            {
+                IndividualPieceId = individualPiece.IndividualPieceId,
+                ArtWorkList = selectList,
+                ArtWorkId = individualPiece.ArtWorkId,
+                Category = individualPiece.Category,
+                Image = individualPiece.Image,
+                Cost = individualPiece.Cost,
+                Price = individualPiece.Price,
+                Sold = individualPiece.Sold,
+                Location = individualPiece.Location,
+                EditionNumber = individualPiece.EditionNumber,
+                Medium = individualPiece.Medium,
+                Dimensions = individualPiece.Dimensions
+            };
+
+
+            if (ip == null)
             {
                 return HttpNotFound();
             }
-            return View(individualPiece);
+
+            return View(ip);
+
+        
         }
 
         // POST: Owner/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditIp([Bind(Include = "IndividualPieceId, ArtWorkId, Category, Image, Cost, Price, Sold, Location, EditionNumber, Medium, Dimensions")] IndividualPiece individualPiece)
+        public ActionResult EditIp(EditIpViewModel editIpViewModel)
         {
             if (ModelState.IsValid)
             {
+                IndividualPiece individualPiece = new IndividualPiece
+                {
+                    IndividualPieceId = editIpViewModel.IndividualPieceId,
+                    ArtWorkId = editIpViewModel.SelectedArtWorkId,
+                    Category = editIpViewModel.Category,
+                    Image = editIpViewModel.Image,
+                    Cost = editIpViewModel.Cost,
+                    Price = editIpViewModel.Price,
+                    Sold = editIpViewModel.Sold,
+                    Location = editIpViewModel.Location,
+                    EditionNumber = editIpViewModel.EditionNumber,
+                    Medium = editIpViewModel.Medium,
+                    Dimensions = editIpViewModel.Dimensions
+                };
+
                 db.Entry(individualPiece).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(individualPiece);
+            return View(editIpViewModel);
         }
 
         // GET: Owner/Delete/5
@@ -346,6 +398,8 @@ namespace ArtGallery2.Controllers
         }
 
         #endregion
+
+        #region Misc
 
         // GET: Owner/Edit/5
         public ActionResult Edit(int? id)
@@ -412,4 +466,6 @@ namespace ArtGallery2.Controllers
             base.Dispose(disposing);
         }
     }
+
+    #endregion
 }

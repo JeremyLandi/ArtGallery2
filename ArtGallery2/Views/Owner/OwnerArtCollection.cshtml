@@ -1,22 +1,15 @@
-﻿@model List<ArtGallery2.ViewModel.ArtViewModel >
+﻿@model ArtGallery2.ViewModel.ArtListViewModel
 @{
     ViewBag.Title = "ArtWork";
 }
-
-@*@Html.ActionLink("Add Artist", "CreateArtist")
-@Html.ActionLink("Add ArtWork", "CreateArtWork")
-@Html.ActionLink("Add Art Piece", "CreateIndividualPiece")*@
-
-
 <h4>Art Work Available</h4>
-@Html.ActionLink("View Sold Pieces", "SoldWork", new { Location = "South" })
+
+@Html.ActionLink("View Sold Pieces", "SoldWork", new { Location = Model.Location })
+
 <hr />
-@foreach (var item in Model)
+@foreach (var item in Model.artViewModel)
 {
     <div class="row">
-        @*<a href="@Url.Action("SoldWork", "Owner", new { Location = item.Location})">
-            View Sold Pieces
-        </a>*@
         <div class="col-md-2">
             @Html.DisplayNameFor(modelItem => item.Image)
         </div>
@@ -54,7 +47,6 @@
             @Html.ActionLink("Edit", "EditIp", new { id = item.IndividualPieceId })    
             @Html.ActionLink("Delete", "DeleteIp", new { id = item.IndividualPieceId })
         </div>
-        </div>
-
-        <hr />
+     </div>
+     <hr />
 }
