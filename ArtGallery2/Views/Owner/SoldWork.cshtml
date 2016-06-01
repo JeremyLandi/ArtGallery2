@@ -1,11 +1,13 @@
-﻿@model List<ArtGallery2.ViewModel.ArtViewModel>
+﻿@model ArtGallery2.ViewModel.ArtListViewModel
 @{
     ViewBag.Title = "ArtWork";
 }
-
 <h4>Art Work Sold</h4>
+
+@Html.ActionLink("View Available Pieces", "OwnerArtCollection", new { Location = Model.Location })
+
 <hr />
-@foreach (var item in Model)
+@foreach (var item in Model.artViewModel)
 {
     <div class="row">
         <div class="col-md-2">

@@ -38,7 +38,7 @@ namespace ArtGallery2.Controllers
         [HttpGet]
         public ActionResult ArtCollection(IndexViewModel indexViewModel)
         {
-<<<<<<< HEAD
+
             var artWork = (from aw in _context.ArtWork
                            join ar in _context.Artist
                            on aw.ArtistId equals ar.ArtistId
@@ -130,42 +130,6 @@ namespace ArtGallery2.Controllers
 
             ModelState.Clear();
             return View(artWork.ToList());
-=======
-            var ArtWorkSold = (from ip in _context.IndividualPiece
-                               join aw in _context.ArtWork
-                               on ip.ArtWorkId equals aw.ArtWorkId
-                               select ip.ArtWorkId).Count();
-
-            var listOfDigitalPrint = (from ip in _context.IndividualPiece
-                                      where (ip.Category).Replace(" ","") == category.Replace(" ", "")
-                                      join aw in _context.ArtWork
-                                      on ip.ArtWorkId equals aw.ArtWorkId
-                                      group ip by new
-                                      {
-                                          ip.Image,
-                                          ip.ArtWorkId,
-                                          ip.Price,
-                                          ip.Dimensions,
-                                          //aw.NumberInInventory,
-                                          ip.Location,
-                                          aw.Title
-                                      }
-                                      into g  
-
-                             select new DigitalPrintViewModel
-                             {
-                                 Image = g.Key.Image,
-                                 ArtWorkId = g.Key.ArtWorkId,
-                                 Price = g.Key.Price,
-                                 Dimensions = g.Key.Dimensions,
-                                 Location = g.Key.Location,
-                                 //NumberInInventory = g.Key.NumberInInventory,
-                                 Title = g.Key.Title
-
-                             }).ToList();
-
-            return View(listOfDigitalPrint);
->>>>>>> master
         }
 
         public ActionResult Detail(int? id)
@@ -184,13 +148,8 @@ namespace ArtGallery2.Controllers
                                       ip.Price,
                                       ip.Dimensions,
                                       ip.Location,
-<<<<<<< HEAD
                                       aw.Title,
                                       ip.EditionNumber
-=======
-                                      //aw.NumberInInventory,
-                                      aw.Title
->>>>>>> master
                                   }
                                       into g
 
@@ -203,13 +162,8 @@ namespace ArtGallery2.Controllers
                                       Price = g.Key.Price,
                                       Dimensions = g.Key.Dimensions,
                                       Location = g.Key.Location,
-<<<<<<< HEAD
                                       Title = g.Key.Title,
                                       NumberInInventory = g.Key.EditionNumber
-=======
-                                      //NumberInInventory = g.Key.NumberInInventory,
-                                      Title = g.Key.Title
->>>>>>> master
 
                                   }).FirstOrDefault();
             return View(artWorkDetails);

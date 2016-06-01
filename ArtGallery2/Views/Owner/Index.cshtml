@@ -12,6 +12,12 @@
 <h1 class="text-center">Art Gallery</h1>
 <br />
 
+<p>
+    @Html.ActionLink("Add new Artist", "CreateArtist")     |
+    @Html.ActionLink("Add new Art Work", "CreateArtWork")     |
+    @Html.ActionLink("Add new Art Piece", "CreateIndividualPiece")
+</p>
+
 <div class="row">
     @foreach (var item in Model)
     {
