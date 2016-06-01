@@ -1,23 +1,63 @@
-﻿@model ArtGallery2.ViewModel.DigitalPrintViewModel
+﻿@model ArtGallery2.ViewModel.ArtViewModel
+
 @{
-    ViewBag.Title = "Detail";
+    ViewBag.Title = "Details";
 }
-<br />
-<br />
-<img src="@Html.DisplayFor(model => model.Image)" alt="image" class="pull-left" />
-<div class="row">
-    <div class="col-md-3">
-        <h2><strong>Title</strong>: @Html.DisplayFor(model => model.Title)</h2>
-        <h4><strong>Price</strong>: @Html.DisplayFor(model => model.Price)</h4>
-        <h4><strong>Current Inventory</strong>: @Html.DisplayFor(model => model.NumberInInventory)</h4>
-        <h4><strong>Location</strong>: @Html.DisplayFor(model => model.Location)</h4>
-    </div> 
-</div>
-<br />
+
+<h2>Details</h2>
+
 <div>
-    <a href="@Url.Action("ArtCollection", "Home")/?category=@Model.Category">
-        Back 
-    </a>
+    <hr />
+    <dl class="dl-horizontal">
+        <dd>
+            <img src="@Html.DisplayFor(model => model.Image)" alt="Alternate Text" />
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Category)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Category)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Location)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Location)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dimensions)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dimensions)
+        </dd>
+
+        <dt>
+            Number In Inventory
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NumberInInventory)
+        </dd>
+
+
+    </dl>
 </div>
-
-
+<p>
+    <div>
+        <a href="@Url.Action("ArtCollection", "Home")/?category=@Model.Category">
+            Back
+        </a>
+    </div>

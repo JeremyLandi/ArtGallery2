@@ -1,18 +1,39 @@
+<<<<<<< HEAD
 ﻿@model IEnumerable<ArtGallery2.ViewModel.CreateArtistViewModel>
 
+=======
+﻿@model List<ArtGallery2.ViewModel.OwnerIndexViewModel>
+>>>>>>> ownerView
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h1 class="text-center">Art Gallery</h1>
+<br />
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Add new Artist", "CreateArtist")     |
+    @Html.ActionLink("Add new Art Work", "CreateArtWork")     |
+    @Html.ActionLink("Add new Art Piece", "CreateIndividualPiece")
 </p>
+<<<<<<< HEAD
 <table class="table">
    
 
 
 
+=======
 
-</table>
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-xs-6 col-md-3">
+            <h2 class="text-center">@Html.DisplayFor(modelItem => item.Location)</h2>
+            <a href="@Url.Action("OwnerArtCollection", "Owner", new { Location = item.Location })" class="thumbnail">
+                <img src="@Html.DisplayFor(modelItem => item.Image)" alt="acrylic">
+            </a>
+        </div>
+    }
+</div>
+>>>>>>> ownerView
+

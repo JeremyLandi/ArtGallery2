@@ -20,6 +20,7 @@ namespace ArtGallery2.Models
         public DbSet<LineItem> LineItem { get; set; }
         public DbSet<Category> Category { get; set; }
 
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             Database.SetInitializer<ArtGalleryDbContext>(null);
@@ -65,6 +66,12 @@ namespace ArtGallery2.Models
             .HasKey(l => l.LineItemId);
         }
 
+<<<<<<< HEAD
         public System.Data.Entity.DbSet<ArtGallery2.ViewModel.CreateArtistViewModel> CreateNewArtViewModels { get; set; }
+=======
+        public System.Data.Entity.DbSet<ArtGallery2.ViewModel.CreateNewArtistViewModel> CreateNewArtViewModels { get; set; }
+
+        public System.Data.Entity.DbSet<ArtGallery2.ViewModel.CreateNewArtViewModel> CreateNewArtViewModels1 { get; set; }
+>>>>>>> ownerView
     }
 }

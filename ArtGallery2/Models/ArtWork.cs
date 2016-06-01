@@ -12,11 +12,17 @@ namespace ArtGallery2.Models
         public string Title { get; set; }
         public DateTime YearOriginalCreated { get; set; }
 
+<<<<<<< HEAD
         //get from id is ind piece
            // public int NumberMade { get; set; }
         // get from ^  minus number sold
            // public int NumberInInventory { get; set; }
         // get from invoice(lineItem)
             //public int NumberSold { get; set; }
+=======
+        //public int NumberMade { get; set; }
+        //public int NumberInInventory { get; set; }
+        //public int NumberSold { get; set; }
+>>>>>>> ownerView
     }
 }

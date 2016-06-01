@@ -1,20 +1,42 @@
-﻿@model List<ArtGallery2.ViewModel.DigitalPrintViewModel>
+﻿@model IEnumerable<ArtGallery2.ViewModel.ArtViewModel>
 @{
-    ViewBag.Title = "DigitalPrint";
+    ViewBag.Title = "Art Work";
 }
 
-<h2 class="text-center">Digital Print</h2>
-
+<br />
+<div class="row col-md-12">
+    <div class="col-md-4">
+        @using (Html.BeginForm())
+        {
+            <p>
+                Artist: @Html.TextBox("searchString")
+                @Html.Hidden("searchId", 1)
+                <input type="submit" value="Search" />
+            </p>
+        }
+    </div>
+    <div class="">
+        @using (Html.BeginForm())
+        {
+            <p>
+                Min Price: @Html.TextBox("minPrice")
+                Max Price: @Html.TextBox("maxPrice")
+                @Html.Hidden("searchId", 2)
+                <input type="submit" value="Search" />
+            </p>
+        }
+    </div>
+</div>
+<hr />
 <div class="row">
     @foreach (var item in Model)
     {
         <div class="col-md-3">
-            <img src="@Html.DisplayFor(modelItem => item.Image)" alt="image" class="thumbnail"/>
+            <img src="@Html.DisplayFor(modelItem => item.Image)" alt="image" class="thumbnail" />
             <h3 class="text-center">@Html.DisplayFor(modelItem => item.Title)</h3>
             <div class="text-center">
-                @Html.ActionLink("View Details", "Detail", new { ArtWorkId = item.ArtWorkId})
+                @Html.ActionLink("View Details", "Detail", new { id = item.ArtWorkId })
             </div>
         </div>
     }
 </div>
-

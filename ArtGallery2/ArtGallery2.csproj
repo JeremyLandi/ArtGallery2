@@ -130,12 +130,22 @@
     <Compile Include="Models\IndividualPiece.cs" />
     <Compile Include="Models\Invoice.cs" />
     <Compile Include="Models\LineItem.cs" />
+    <Compile Include="Models\SYSUser.cs" />
+    <Compile Include="Models\UserLoginView.cs" />
+    <Compile Include="Models\Register.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\ArtistDropDownViewModel.cs" />
+
+    <Compile Include="ViewModel\ArtListViewModel.cs" />
     <Compile Include="ViewModel\ArtWorkDropDownViewModel.cs" />
-    <Compile Include="ViewModel\CreateArtistViewModel.cs" />
-    <Compile Include="ViewModel\DigitalPrintViewModel.cs" />
+    <Compile Include="ViewModel\CreateNewArtistViewModel.cs" />
+    <Compile Include="ViewModel\ArtViewModel.cs" />
+    <Compile Include="ViewModel\CreateNewArtViewModel.cs" />
+    <Compile Include="ViewModel\EditIpViewModel.cs" />
+
     <Compile Include="ViewModel\IndexViewModel.cs" />
+    <Compile Include="ViewModel\OwnerArtWorkViewModel.cs" />
+    <Compile Include="ViewModel\OwnerIndexViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -149,14 +159,20 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Home\ArtCollection.cshtml" />
     <Content Include="Views\Home\Detail.cshtml" />
-    <Content Include="Views\Home\View.cshtml" />
+
     <Content Include="Views\Owner\CreateArtist.cshtml" />
     <Content Include="Views\Owner\DeleteArtist.cshtml" />
     <Content Include="Views\Owner\Details.cshtml" />
     <Content Include="Views\Owner\Edit.cshtml" />
     <Content Include="Views\Owner\Index.cshtml" />
-    <Content Include="Views\Owner\CreateIndividualPiece.cshtml" />
+
+    <Content Include="Views\Owner\OwnerArtCollection.cshtml" />
+    <Content Include="Views\Owner\SoldWork.cshtml" />
     <Content Include="Views\Owner\CreateArtWork.cshtml" />
+    <Content Include="Views\Owner\EditIp.cshtml" />
+    <Content Include="Views\Owner\DeleteIp.cshtml" />
+    <Content Include="Views\Owner\CreateIndividualPiece.cshtml" />
+
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -166,6 +182,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -9,7 +9,7 @@ using System.Web.Mvc;
 namespace ArtGallery2.Controllers
 {
     public class HomeController : Controller
-    {     
+    {
         ArtGalleryDbContext _context = new ArtGalleryDbContext();
 
         // GET: Home
@@ -35,8 +35,10 @@ namespace ArtGallery2.Controllers
         }
 
 
-        public ActionResult ArtCollection(string category)
+        [HttpGet]
+        public ActionResult ArtCollection(IndexViewModel indexViewModel)
         {
+<<<<<<< HEAD
             var ArtWorkSold = (from ip in _context.IndividualPiece
                                join aw in _context.ArtWork
                                on ip.ArtWorkId equals aw.ArtWorkId
@@ -71,38 +73,143 @@ namespace ArtGallery2.Controllers
                              }).ToList();
 
             return View(listOfDigitalPrint);
+=======
+            var artWork = (from aw in _context.ArtWork
+                           join ar in _context.Artist
+                           on aw.ArtistId equals ar.ArtistId
+                           join ip in _context.IndividualPiece
+                           on aw.ArtWorkId equals ip.ArtWorkId
+                           where ip.Sold == false
+                           where ip.Category.Replace(" ", "") == indexViewModel.Category
+                           group ip by new
+                           {
+                               aw.ArtWorkId,
+                               aw.Title,
+                               ip.Category,
+                               ar.Name,
+                               ip.Image,
+                               ip.Medium,
+                               ip.Price
+                           }
+                              into g
+                           select new ArtViewModel
+                           {
+                               ArtWorkId = g.Key.ArtWorkId,
+                               Title = g.Key.Title,
+                               Category = g.Key.Category,
+                               Name = g.Key.Name,
+                               Image = g.Key.Image,
+                               Medium = g.Key.Medium,
+                               Price = g.Key.Price
+                           });
+
+            return View(artWork.ToList());
         }
 
-        public ActionResult Detail(int ArtWorkId)
+        public ActionResult ArtCollection(IndexViewModel indexViewModel,
+                                  string searchString,
+                                  int? searchId,
+                                  int? minPrice,
+                                  int? maxPrice)
+        {
+
+            var artWork = (from aw in _context.ArtWork
+                           join ar in _context.Artist
+                           on aw.ArtistId equals ar.ArtistId
+                           join ip in _context.IndividualPiece
+                           on aw.ArtWorkId equals ip.ArtWorkId
+                           where ip.Sold == false
+                           where ip.Category.Replace(" ", "") == indexViewModel.Category.Replace(" ", "")
+                           group ip by new
+                           {
+                               aw.ArtWorkId,
+                               aw.Title,
+                               ar.Name,
+                               ip.Image,
+                               ip.Medium,
+                               ip.Price
+                           }
+                                into g
+                           select new ArtViewModel
+                           {
+                               ArtWorkId = g.Key.ArtWorkId,
+                               Title = g.Key.Title,
+                               Name = g.Key.Name,
+                               Image = g.Key.Image,
+                               Medium = g.Key.Medium,
+                               Price = g.Key.Price
+                           }).Distinct();
+
+            // Filter by artist name
+            if (!string.IsNullOrEmpty(searchString) && searchId == 1)
+            {
+                artWork = artWork.Where(aw => aw.Name.Contains(searchString));
+            }
+
+            // Filter by price range
+            if ((minPrice != null || maxPrice != null) && searchId == 2)
+            {
+                if (minPrice == null)
+                {
+                    artWork = artWork.Where(aw => aw.Price <= maxPrice);
+                }
+                else if (maxPrice == null)
+                {
+                    artWork = artWork.Where(aw => aw.Price >= minPrice);
+                }
+                else
+                {
+                    artWork = artWork.Where(aw => aw.Price <= maxPrice && aw.Price >= minPrice);
+                }
+            }
+
+            ModelState.Clear();
+            return View(artWork.ToList());
+>>>>>>> ownerView
+        }
+
+        public ActionResult Detail(int? id)
         {
             var artWorkDetails = (from ip in _context.IndividualPiece
-                                  where ip.ArtWorkId == ArtWorkId
+                                  where ip.ArtWorkId == id
 
                                   join aw in _context.ArtWork
                                   on ip.ArtWorkId equals aw.ArtWorkId
                                   group ip by new
                                   {
                                       ip.Image,
+                                      ip.IndividualPieceId,
                                       aw.ArtWorkId,
                                       ip.Category,
                                       ip.Price,
                                       ip.Dimensions,
                                       ip.Location,
+<<<<<<< HEAD
                                       //aw.NumberInInventory,
                                       aw.Title
+=======
+                                      aw.Title,
+                                      ip.EditionNumber
+>>>>>>> ownerView
                                   }
                                       into g
 
-                                  select new DigitalPrintViewModel
+                                  select new ArtViewModel
                                   {
                                       Image = g.Key.Image,
+                                      IndividualPieceId = g.Key.IndividualPieceId,
                                       ArtWorkId = g.Key.ArtWorkId,
-                                      Category = g.Key.Category,
+                                      Category = (g.Key.Category).Replace(" ",""),
                                       Price = g.Key.Price,
                                       Dimensions = g.Key.Dimensions,
                                       Location = g.Key.Location,
+<<<<<<< HEAD
                                       //NumberInInventory = g.Key.NumberInInventory,
                                       Title = g.Key.Title
+=======
+                                      Title = g.Key.Title,
+                                      NumberInInventory = g.Key.EditionNumber
+>>>>>>> ownerView
 
                                   }).FirstOrDefault();
             return View(artWorkDetails);

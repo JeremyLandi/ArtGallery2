@@ -7,27 +7,29 @@ using System.Web.Mvc;
 
 namespace ArtGallery2.ViewModel
 {
-    public class ArtWorkDropDownViewModel
+    public class CreateNewArtViewModel
     {
-<<<<<<< HEAD
-=======
         [Key]
         public int PrimaryTrackingkey { get; set; }
+        //Artist
+        public string Name { get; set; }
+        public DateTime BirthYear { get; set; }
+        public DateTime DeathYear { get; set; }
 
->>>>>>> ownerView
         [Display(Name = "Art Work")]
         public int SelectedArtWorkId { get; set; }
         public IEnumerable<SelectListItem> ArtWorkList { get; set; }
 
-<<<<<<< HEAD
-=======
-        [Display(Name = "Location")]
-        public int SelectedLocation { get; set; }
-        public IEnumerable<SelectListItem> LocationList { get; set; }
+        //ArtWork
+        public string Title { get; set; }
+        public DateTime YearOriginalCreated { get; set; }
+        public string Medium { get; set; }
+        public string Dimensions { get; set; }
+        public int NumberMade { get; set; }
+        public int NumberInInventory { get; set; }
+        public int NumberSold { get; set; }
 
-        public int IndividualPieceId { get; set; }
-        public int ArtWorkId { get; set; }
->>>>>>> ownerView
+        //Ind Piece
         public string Category { get; set; }
         public string Image { get; set; }
         public double Cost { get; set; }
@@ -35,7 +37,5 @@ namespace ArtGallery2.ViewModel
         public bool Sold { get; set; }
         public string Location { get; set; }
         public int EditionNumber { get; set; }
-        public string Medium { get; set; }
-        public string Dimensions { get; set; }
     }
 }
